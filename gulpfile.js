@@ -170,7 +170,7 @@ gulp.task('_app_html', function() {
 
 gulp.task('_app_entry', function() {
   return gulp.src(app_entry)
-             // .pipe(minifyHTML({empty:true})) 
+             // .pipe(minifyHTML({empty:true}))
              .pipe(replace('[BUILD_VERSION]', build_version))
              .pipe(replace('[BUILD_DATE]', build_date))
              .pipe(gulp.dest('build'))
@@ -218,7 +218,8 @@ gulp.task('_electron', ['build'], function(cb) {
     dir       : 'build',
     out       : '.temp-dist',
     name      : project.name,
-    platform  : 'linux,win32',
+    // platform  : 'darwin,linux,win32',
+    platform  : 'darwin',
     arch      : 'all',
     version   : '0.34.2',
     overwrite : true,
@@ -231,6 +232,7 @@ gulp.task('_electron', ['build'], function(cb) {
 gulp.task('_electron_zip', ['_electron'], function() {
   return gulp.src('.temp-dist/*')
              .pipe(foreach(function(stream, file) {
+              console.log(file.path);
                 var fileName = file.path.substr(file.path.lastIndexOf("/")+1);
                 gulp.src('.temp-dist/'+fileName+'/**/*')
                     .pipe(zip(fileName+'.zip'))
