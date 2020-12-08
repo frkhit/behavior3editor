@@ -219,7 +219,7 @@ gulp.task('_electron', ['build'], function(cb) {
     out       : '.temp-dist',
     name      : project.name,
     // platform  : 'darwin,linux,win32',
-    platform  : 'darwin',
+    platform  : 'linux,win32',
     arch      : 'all',
     version   : '0.34.2',
     overwrite : true,
@@ -232,7 +232,6 @@ gulp.task('_electron', ['build'], function(cb) {
 gulp.task('_electron_zip', ['_electron'], function() {
   return gulp.src('.temp-dist/*')
              .pipe(foreach(function(stream, file) {
-              console.log(file.path);
                 var fileName = file.path.substr(file.path.lastIndexOf("/")+1);
                 gulp.src('.temp-dist/'+fileName+'/**/*')
                     .pipe(zip(fileName+'.zip'))
