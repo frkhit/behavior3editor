@@ -7,8 +7,9 @@ RUN npm install -g bower gulp && \
     npm install && \
     bower install --allow-root  && \
     gulp dist && \
-    rm -rf node_modules && \
-    rm -rf bower_components
+    rm -rf ./node_modules && \
+    rm -rf ./bower_components && \
+    rm -rf ./.temp-dist/
 
 
 
