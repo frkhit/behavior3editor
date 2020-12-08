@@ -9,7 +9,7 @@ RUN npm install -g bower gulp && \
     gulp dist && \
     rm -rf ./node_modules && \
     rm -rf ./bower_components && \
-    rm -rf ./.temp-dist/
-
+    rm -rf ./.temp-dist/ && \
+    rm -rf ./dist/ 
 
 
